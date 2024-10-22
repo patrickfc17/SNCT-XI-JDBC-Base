@@ -19,8 +19,6 @@ public class ConnectionManager {
     }
 
     public Connection estabelecerConexao() {
-        if (ConnectionManager.conn != null) return conn;
-
         var dbQualifiedName = "org.sqlite.JDBC";
         var dbFilePath = "src/main/java/org/example/database/database.sqlite";
 
@@ -28,8 +26,6 @@ public class ConnectionManager {
             Class.forName(dbQualifiedName);
 
             ConnectionManager.conn = DriverManager.getConnection(String.format("jdbc:sqlite:%s", dbFilePath));
-
-            System.out.println("Conexão estabelecida!");
         } catch (ClassNotFoundException e) {
             System.out.println(String.format("A classe %s não foi encontrada", dbQualifiedName));
             
